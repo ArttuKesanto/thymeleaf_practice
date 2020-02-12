@@ -12,10 +12,10 @@ public class BookController {
 @RequestMapping(value = "/index", method = RequestMethod.GET)
 public String someMethod(Model model) {
 	// Example code.
-	return "tervetuloa";
-	
-	
+	return "index";
 	
 }
+
+
 
 }

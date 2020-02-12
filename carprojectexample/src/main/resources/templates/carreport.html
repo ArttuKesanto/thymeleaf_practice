@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Car Report</title>
+</head>
+<body>
+
+<h1>Car Report</h1>
+
+<p th:text="'Car model: ' + ${car.merkki}">merkki</p>
+<p th:text="' Car year: ' + ${car.valmistuvsuosi}">valmistusvuosi</p>
+<p th:text="'Kiitos tiedoistasi. Ne on nyt tallennettu!'"> </p>
+</body>
+</html>
+
+<!-- Aloitetaan endpointilla, joka palauttaa lomakkeen. Lomakkeella on viittaus POST:iin, joka saa tietoa. -->

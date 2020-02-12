@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Returned text depending on attributes</title>
+</head>
+<body>
+<h2>Message for you!</h2>
+
+	<div th:object="${information}">
+  		<span th:if="${information.age} &lt; 17">You are too young! Sorry, grow up!</span>
+  		<span th:if="${information.age} &gt; 17"><span th:text="'Welcome ' + ${information.name} + '!'"></span></span> 
+  		<!-- // Important to remember span and th:text, etc. -->
+	</div>
+
+</body>
+</html>

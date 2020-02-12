@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>New Car</title>
+</head>
+<body>
+<h1>New Car</h1>
+
+<form action="#" th:action="@{/savecar}" method="post" th:object="${car}"> <!-- Viittaa kontrollerissa mainittuun.... -->
+<p>Model: <input type="text" th:field="${car.merkki}" /></p>
+<p>Year: <input type="text" th:field="${car.valmistuvsuosi}" /></p>
+
+<input type="submit" value="Send">
+
+
+</form>
+
+</body>
+</html>

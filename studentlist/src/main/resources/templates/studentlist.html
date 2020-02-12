@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>List of students</title>
+</head>
+<body>
+<h2>Welcome to Haaga-Helia University of Applied Sciences! The students are:</h2>
+
+	<table>
+	
+	<tr th:each="student : ${students}">
+	<td th:text="${student.firstName} + ' ' + ${student.lastName}"></td> <!-- ${car.getMerkki()}  -->
+	<!-- <td th:text="${student.firstName} + ' ' + ${student.lastName}">name2</td> -->
+	</tr>
+	
+	</table>
+	
+	
+	<!--  <div th:with="strList = ${ {'netgloo', 'web', 'design'} }">
+
+  <!-- Some code using ${strList} 
+  <ul>
+    <li th:each="s : ${strList}" th:text="|${s}|"></li>
+  </ul> JUST TESTING WITH THIS. Bullet points for another work!
+ 
+</div> -->
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 package hh.swd.stlist.friendlist.webcontroller;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
