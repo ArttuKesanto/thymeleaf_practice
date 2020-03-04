@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Product List</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="../css/css.css" th:href="@{../css/css.css}" />
+    <link href="https://fonts.googleapis.com/css?family=Tangerine&display=swap" rel="stylesheet">
+</head>
+<body>
+	<h1 id="titlemain">Electronic Products by Hardware Limited Ltd.</h1>
+	<table id="table">
+		<tr>
+			<th>Name</th>
+			<th>Year</th>
+			<th>Rating</th>
+			<th>Availability</th>
+			<th>Description</th>
+			<th>Price</th>
+			<th>Category related to product</th>
+		</tr>
+
+		<tr th:each="product : ${products}">
+			<td th:text="${product.name}">name</td>
+			<td th:text="${product.year}">year</td>
+			<td th:text="${product.rating}">rating</td>
+			<td th:text="${product.availability}">avail.</td>
+			<td th:text="${product.description}">desc.</td>
+			<td th:text="${product.price}">price</td>
+			
+			<td th:text="${product.category.name}">Category related to product</td>
+			<td><a th:href="@{/deleteproduct/{id}(id=${product.id})}">Delete</a></td>
+			<td><a th:href="@{/editproduct/{id}(id=${product.id})}">Edit</a></td>
+		</tr>
+	</table>
+	<a href="/newproduct" id="button">Add a new product</a>
+	<a href="/allcats" id="button">Show and edit categories</a>
+	
+
+</body>
+</html>

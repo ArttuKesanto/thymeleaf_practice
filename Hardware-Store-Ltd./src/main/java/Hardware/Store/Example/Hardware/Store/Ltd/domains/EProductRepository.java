@@ -1,17 +1,17 @@
-package hh.swd.bookstore.Bookstore.domains;
+package Hardware.Store.Example.Hardware.Store.Ltd.domains;
 
 
-import java.util.List;
+import java.util.List; 
 import org.springframework.data.repository.CrudRepository;
 
 
-public interface BookRepository extends CrudRepository<Book, Long> {
+public interface EProductRepository extends CrudRepository<ElectronicProduct, Long> {
 
     // List<Book> findByName(String name); // Omia metodeja.
     
-    List<Book> findByYear(int year); //Esimerkki. Muista muuttaa listaksi!
-    List<Book> findByIsbn(String isbn);
-    List<Book> findByAuthor(String author);
+    List<ElectronicProduct> findByYear(int year); //Esimerkki.
+    List<ElectronicProduct> findByName(String name);
+    List<ElectronicProduct> findByRating(String rating);
     // CRUDRepository-rajapinnan parametrisoinnissa annetaan Entity-luokan nimi: tässä Book ja toisena 
     //parametrina pääavainsarakkeen tietotyyppi, tässä Long.
     

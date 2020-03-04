@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hardware Ltd.'s edit page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="../css/css.css" th:href="@{../css/css.css}" />
+    <link href="https://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet">
+</head>
+
+<body>
+
+	<h2 id="titlemain">Modify the desired product's information</h2>
+	<div>
+		<form id="form" th:object="${product}" th:action="@{../save}" action="#" method="post">
+		  	
+		  	<label for="name">Product's name:</label>
+			<input type="text" id="name" th:field="*{name}" /> 
+			<div style="clear: both; display: block; height: 20px;"></div>
+			
+		  	<label for="author">Product's release year:</label>
+			<input type="text" id="year" th:field="*{year}" />
+			<div style="clear: both; display: block; height: 20px;"></div>
+			
+		  	<label for="isbn">Rating of the product:</label>
+			<input type="text" th:field="*{rating}" />
+			<div style="clear: both; display: block; height: 20px;"></div>
+			
+			<label for="year">Availability of the product:</label>
+			<input type="text" th:field="*{availability}" />
+			<div style="clear: both; display: block; height: 20px;"></div>	
+			
+			<label for="year">Description of the product:</label>
+			<input type="text" th:field="*{description}" />
+			<div style="clear: both; display: block; height: 20px;"></div>	
+			
+			<label for="year">Price of the product:</label>
+			<input type="text" th:field="*{price}" />
+			<div style="clear: both; display: block; height: 20px;"></div>	
+			
+			<label for="id"></label>
+		  	<input type="hidden" id="id" th:field="*{id}" readonly="readonly" /><!-- // Ei kosketa tähän. Ei käy $-tägi? 
+		  	 Koska vain attribuutti. Moved here because it would create some empty space between some columns.-->
+			
+			<input id="button" type="submit" value="Save"></input>
+			  <label for="categorylist">Category:</label>
+			
+			<select id="categorylist" th:field="*{category}" class="form-control">
+			<option th:each="category: ${catslist}"
+					th:value="${category.categoryId}"
+					th:text="${category.name}"></option>
+			</select> 
+			
+			<p><a th:href="@{/allproducts}" id="buttonprevious">Previous page</a></p>
+			
+		</form>
+	</div>
+	
+</body>
+</html>

@@ -12,9 +12,6 @@
 	<h2 id="titlemain">Modify the desired book's information</h2>
 	<div>
 		<form id="form" th:object="${book}" th:action="@{../save}" action="#" method="post">
-		  	<label for="id"></label>
-		  	<input type="hidden" id="id" th:field="*{id}" readonly="readonly" /><!-- // Ei kosketa tähän. Ei käy $-tägi? 
-		  	 Koska vain attribuutti. -->
 		  	
 		  	<label for="name">Book's name:</label>
 			<input type="text" id="name" th:field="*{title}" /> 
@@ -36,14 +33,20 @@
 			<input type="text" th:field="*{price}" />
 			<div style="clear: both; display: block; height: 20px;"></div>	
 			
+			<label for="id"></label>
+		  	<input type="hidden" id="id" th:field="*{id}" readonly="readonly" /><!-- // Ei kosketa tähän. Ei käy $-tägi? 
+		  	 Koska vain attribuutti. Siirsin tänne, jotta ei vie tilaa muilta kolumneilta. -->
+			
 			<input id="button" type="submit" value="Save"></input>
 			  <label for="categorylist">Category:</label>
 			
-			<select id="categorylist" th:field="*{category}" class="form-control">
+			<select id="categorylist" th:field="*{category}" class="form-control"> <!-- // Tässä kohtaa voisi olla myös ${book.category} -->
 			<option th:each="category: ${catslist}"
 					th:value="${category.categoryId}"
 					th:text="${category.name}"></option>
 			</select> 
+			
+			<p><a th:href="@{/allbooks}" id="buttonprevious">Previous page</a></p>
 			
 		</form>
 	</div>

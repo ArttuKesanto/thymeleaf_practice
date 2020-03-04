@@ -24,19 +24,21 @@ public class BookstoreApplication {
 	@Bean
 	public CommandLineRunner bookDemo(BookRepository bookRepository, CategoryRepository catRepository) { 
 		return (args) -> {
-			log.info("save a couple of books");
+			log.info("Save a couple of books and categories...");
 			
 			catRepository.save(new Category("Literature"));
 			catRepository.save(new Category("Culture"));
 			catRepository.save(new Category("Sci-fi"));
 			catRepository.save(new Category("Horror"));
-			
+			for (Category cat : catRepository.findAll()) {
+				log.info(cat.toString());
+			}
 			
 			
 			bookRepository.save(new Book("Tesla", "Matts Johansson", 1994, "2100-2345-113", 54.50, catRepository.findByName("Horror").get(0)));
 			bookRepository.save(new Book("Saving Private Ryan", "Lord Hansel", 1999, "2833-2345-112", 69.50, catRepository.findByName("Literature").get(0)));	
 			bookRepository.save(new Book("Saving Private Holmes", "Lord Helmett", 2007, "2123-2545-812", 199.50, catRepository.findByName("Culture").get(0)));	
-			log.info("fetch all books");
+			log.info("Fetch all books and their information...");
 			for (Book book : bookRepository.findAll()) {
 				log.info(book.toString());
 			}

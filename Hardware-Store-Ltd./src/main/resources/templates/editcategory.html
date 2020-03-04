@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hardware Limited Ltd. edit page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="../css/CSS.css" th:href="@{../css/CSS.css}" />
+    <link href="https://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet">
+</head>
+
+<body>
+
+	<h2 id="titlemain">Modify the desired category's information</h2>
+	<div>
+		<form id="form" th:object="${cat}" th:action="@{../savecat}" action="#" method="post">
+		  	
+		  	<label for="name">Category's name:</label>
+			<input type="text" id="name" th:field="*{name}" /> 
+			<div style="clear: both; display: block; height: 20px;"></div>
+			
+			
+			<label for="categoryId"></label>
+		  	<input type="hidden" id="id" th:field="*{categoryId}" readonly="readonly" /><!-- // Ei kosketa tähän. Ei käy $-tägi? 
+		  	 Koska vain attribuutti. Siirsin tänne, jotta ei vie tilaa muilta kolumneilta. -->
+			
+			<input id="button" type="submit" value="Save"></input>
+			 <!-- <label for="categorylist">Category:</label>
+			
+			 <select id="categorylist" th:field="*{category}" class="form-control"> <!-- // Tässä kohtaa voisi olla myös ${book.category}
+			<option th:each="category: ${catslist}"
+					th:value="${category.categoryId}"
+					th:text="${category.name}"></option>
+			</select> -->
+			
+			<p><a th:href="@{/categorieslist}" id="buttonprevious">Back to category list</a></p>
+			
+		</form>
+	</div>
+	
+</body>
+</html>

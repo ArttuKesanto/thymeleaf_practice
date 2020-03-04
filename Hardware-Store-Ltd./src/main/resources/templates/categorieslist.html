@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Category List</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="../css/CSS.css" th:href="@{../css/CSS.css}" />
+    <link href="https://fonts.googleapis.com/css?family=Tangerine&display=swap" rel="stylesheet">
+</head>
+<body>
+	<h1 id="titlemain">Categories on Hardware Limited Ltd.</h1>
+	<table id="table">
+		<tr>
+			<th>Category name</th>
+		</tr>
+
+		<tr th:each="category : ${catslist}">
+			<td th:text="${category.name}">category</td>
+
+			<td><a th:href="@{/deletecat/{id}(id=${category.categoryId})}">Delete</a></td>
+			<td><a th:href="@{/editcat/{id}(id=${category.categoryId})}">Edit</a></td>
+		</tr>
+	</table>
+	<a href="/newcat" id="button">Add a new category</a>
+	
+	<a th:href="@{/allproducts}" id="buttonprevious">Back to product listing</a>
+
+</body>
+</html>

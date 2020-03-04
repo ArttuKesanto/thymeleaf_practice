@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New Product Form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="../css/css.css" th:href="@{../css/css.css}" />
+    <link href="https://fonts.googleapis.com/css?family=Tangerine&display=swap" rel="stylesheet">
+</head>
+<body>
+	<h1 id="titlemain">Add a new product with the information required</h1>
+	<form id="form" action="#" th:action="@{/save}"  th:object= ${product} method="post">
+	<p>Product name: <input type="text" th:field="${product.name}" /></p>
+	<p>Year: <input type="text" th:field="${product.year}" /></p>
+	<p>Rating: <input type="text" th:field="${product.rating}" /></p>
+	<p>Availability: <input type="text" th:field="${product.availability}" /></p>
+	<p>Description: <input type="text" th:field="${product.description}" /></p>
+	<p>Price: <input type="text" th:field="${product.price}" /></p>
+	<input type="submit" id="button" value="Submit" /> <input type="reset" id="button" value="Reset" />
+	<label for="categorylist">Category:</label>
+			<select id="categorylist" th:field="*{category}" class="form-control">
+			<option th:each="category: ${catslist}"
+					th:value="${category.categoryId}"
+					th:text="${category.name}"></option>
+			
+			</select>
+		<p><a th:href="@{/allproducts}" id="buttonprevious">Previous page</a></p>
+	</form>
+    
+</body>
+</html>
