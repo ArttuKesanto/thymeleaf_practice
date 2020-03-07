@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Car form</title>
+    <title>New Book Form</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link type="text/css" rel="stylesheet" href="../css/CSS.css" th:href="@{../css/CSS.css}" />
     <link href="https://fonts.googleapis.com/css?family=Tangerine&display=swap" rel="stylesheet">
@@ -10,10 +10,15 @@
 	<h1 id="titlemain">Add a new book with the information required</h1>
 	<form id="form" action="#" th:action="@{/save}"  th:object= ${book} method="post">
 	<p>Title Book: <input type="text" th:field="${book.title}" /></p>
+	<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</p>
 	<p>Author: <input type="text" th:field="${book.author}" /></p>
+	<p th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Author Error</p>
 	<p>Year: <input type="text" th:field="${book.year}" /></p>
+	<p th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year Error</p>
 	<p>ISBN: <input type="text" th:field="${book.isbn}" /></p>
+	<p th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}">ISBN Error</p>
 	<p>Price: <input type="text" th:field="${book.price}" /></p>
+	<p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</p>
 	<input type="submit" id="button" value="Submit" /> <input type="reset" id="button" value="Reset" />
 	<label for="categorylist">Category:</label>
 			<select id="categorylist" th:field="*{category}" class="form-control">
@@ -22,7 +27,7 @@
 					th:text="${category.name}"></option>
 			
 			</select>
-			
+			<p th:if="${#fields.hasErrors('category')}" th:errors="*{category}">Category Error</p>
 			<p><a th:href="@{/allbooks}" id="buttonprevious">Previous page</a></p>
 	</form>
     

@@ -1,16 +1,19 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Car form</title>
+    <title>New Cat Form</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link type="text/css" rel="stylesheet" href="../css/CSS.css" th:href="@{../css/CSS.css}" />
     <link href="https://fonts.googleapis.com/css?family=Tangerine&display=swap" rel="stylesheet">
 </head>
 <body>
 	<h1 id="titlemain">Add a new category with the information required</h1>
-	<form id="form" action="#" th:action="@{/savecat}"  th:object= ${cat} method="post">
-	<p>Category title: <input type="text" th:field="${cat.name}" /></p>
-	
+	<div>
+	<form id="form" action="#" th:action="@{/savecat}" th:object= ${category} method="post">
+			 <label for="name">Category's title:</label>
+			<input type="text" id="name" th:field="${category.name}" />
+			<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Title Error</p> 
+			<div style="clear: both; display: block; height: 20px;"></div>
 	<input type="submit" id="button" value="Submit" /> <input type="reset" id="button" value="Reset" />
 	<!-- <label for="categorylist">Category:</label>
 			<select id="categorylist" th:field="*{category}" class="form-control">
@@ -22,6 +25,7 @@
 			
 	<p><a th:href="@{/allcats}" id="buttonprevious">Previous page</a></p>
 	</form>
+	</div>
     
 </body>
 </html>

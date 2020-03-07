@@ -24,13 +24,19 @@
 			<td th:text="${book.year}">year</td>
 			<td th:text="${book.isbn}">isbn</td>
 			<td th:text="${book.price}">price</td>
-			<td th:text="${book.category.name}">Category related to book</td>
+			<td th:text="${book.category.name}">Category related to specified book</td>
+			<!--<td>
+			//<span th:if="${book.category.name == True}">Category related to book </span>
+			//<span th:unless="${book.category.name == null}">Category related to book </span>
+			//</td> MAYBE THIS?-->
 			<td><a th:href="@{/deletebook/{id}(id=${book.id})}">Delete</a></td>
 			<td><a th:href="@{/editbook/{id}(id=${book.id})}">Edit</a></td>
+			
 		</tr>
 	</table>
 	<a href="/newbook" id="button">Add a new book</a>
 	<a href="/allcats" id="button">Show and edit categories</a>
+	<a href="http://localhost:8080/api/books" id="button">Show JSON data</a>
 
 </body>
 </html>

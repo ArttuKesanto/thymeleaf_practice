@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Car List</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Cars</h1>
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Model</th>
+			<th>Year</th>
+		</tr>
+
+		<tr th:each="car : ${cars}">
+			<td th:text="${car.id}">id</td>
+			<td th:text="${car.model}">model</td>
+			<td th:text="${car.year}">year</td>
+			<td><a th:href="@{/deletecar/{id}(id=${car.id})}">Delete</a></td>
+		</tr>
+	</table>
+	<a href="/newcar">New Car</a>
+
+</body>
+</html>

@@ -1,15 +1,21 @@
 package hh.swd.bookstore.Bookstore.webcontrollers;
 
 
-import java.util.List; 
+import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import hh.swd.bookstore.Bookstore.domains.Book;
 import hh.swd.bookstore.Bookstore.domains.BookRepository;
@@ -55,22 +61,53 @@ public String getAllCategories(Model model) {
 	@RequestMapping(value = "/newcat", method = RequestMethod.GET)
 	public String getNewCatForm(Model model) {
 		//model.addAttribute("book", new Book()); // "tyhjä" kategoria-olio, virheellisesti kirja.
-		model.addAttribute("cat", new Category());
+		model.addAttribute("category", new Category());
 		return "newcategoryform";
 	}
 
 	// kirjalomakkeella syötettyjen tietojen vastaanotto ja tallennus
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveBook(@ModelAttribute Book book) {
+	public String saveBook(@ModelAttribute @Valid Book book, BindingResult bindingResult, Model model) {
 		// talletetaan yhden kirjan tiedot tietokantaan
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("catslist", catRepository.findAll());
+			return "newbookform";
+			}
+		bookRepository.save(book);
+		return "redirect:/allbooks"; //allbooks-endpointin kutsu. 
+	}
+	
+	// kirjalomakkeella syötettyjen tietojen vastaanotto ja tallennus
+	@RequestMapping(value = "/saveedit", method = RequestMethod.POST)
+	public String saveBookEdit(@ModelAttribute @Valid Book book, BindingResult bindingResult, Model model) {
+		// talletetaan yhden kirjan tiedot tietokantaan
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("catslist", catRepository.findAll());
+			return "editbook";
+			}
 		bookRepository.save(book);
 		return "redirect:/allbooks"; //allbooks-endpointin kutsu. 
 	}
 	
 	// kirjalomakkeella syötettyjen tietojen vastaanotto ja tallennus
 	@RequestMapping(value = "/savecat", method = RequestMethod.POST)
-	public String saveBook(@ModelAttribute Category category) {
+	public String saveBook(@ModelAttribute @Valid Category category, BindingResult bindingResult1, Model model) {
 		// talletetaan yhden kategorian tiedot tietokantaan
+		if (bindingResult1.hasErrors()) {
+			//model.addAttribute("cat", new Category());
+			return "newcategoryform";
+		}
+		catRepository.save(category);
+		return "redirect:/allcats"; //allcats-endpointin kutsu. 
+	}
+	
+	@RequestMapping(value = "/saveeditcat", method = RequestMethod.POST)
+	public String saveNewCat(@ModelAttribute @Valid Category category, BindingResult bindingResult1, Model model) {
+		// talletetaan yhden kategorian tiedot tietokantaan
+		if (bindingResult1.hasErrors()) {
+			//model.addAttribute("cat", new Category());
+			return "editcategory";
+		}
 		catRepository.save(category);
 		return "redirect:/allcats"; //allcats-endpointin kutsu. 
 	}
@@ -101,9 +138,43 @@ public String getAllCategories(Model model) {
 	public String editCat(@PathVariable("categoryId") Long catId, Model model) { // Kokeiltu nimellä, ID ofc parempi.
 		//bookRepository.deleteById(bookId);
 		//Book book = bookRepository.findById(bookId); Ei toimi. Entäs Model?
-		model.addAttribute("cat", catRepository.findById(catId));
+		model.addAttribute("category", catRepository.findById(catId));
 		model.addAttribute("catslist", catRepository.findAll());
 		//model.addAttribute("cats", catRepository.findAll());
 		return "editcategory"; // Liittyy polkuun, jolla palautetaan suoraan editbook. Ei redirect, vaan suora palautus. Redirect ei toimi.
 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//RESTful service to get all books.
+	@RequestMapping(value="/books", method = RequestMethod.GET)
+	public @ResponseBody List<Book> bookListRest() {
+		return (List<Book>) bookRepository.findAll();
+	}
+	
+	//RESTful service to get one book by id.
+	@RequestMapping(value = "/books/{id}", method = RequestMethod.GET)
+	public @ResponseBody Optional <Book> findBookRest(@PathVariable Long id) { // Täytyy olla id, ei toimi bookId tässä!
+		return bookRepository.findById(id); // Laitetaan util-importti optional, jotta voidaan käyttää PathVariablea myös tässä.
+	
 }
+	
+	   // RESTful service to save new car 
+    @RequestMapping(value="/books", method = RequestMethod.POST) // POST kertoo, että tallennetaan tietoa.
+    public @ResponseBody Book saveBookRest(@RequestBody Book book) {	
+    	return bookRepository.save(book);
+    }
+    
+    // Home page of REST services
+    @RequestMapping(value="/resthome", method = RequestMethod.GET)
+    public String getRestHome() {	
+    	return "resthomepage"; // resthomepage.html, ei oma tiedosto vaan tulee importtien kautta.
+    }
+}
+

@@ -1,12 +1,21 @@
 package hh.swd.bookstore.Bookstore.domains;
 
 // import javax.annotation.Generated;
-import javax.persistence.Entity; 
+import javax.persistence.Entity;  
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -14,12 +23,23 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	@NotNull(message = "Minimum length is between 2 and 30 characters.")
+	@Size(min=2, max=30, message="Please input a correct name.")
 	private String title;
+	@Size(min=2, max=30, message="Please input a logical author name.")
 	private String author;
+	@NotNull(message = "The year must have a value between 1800 and 2024.")
+	@Min(value=1800, message="The year must be correct - minimum value is {value}.")
+	@Max(value=2024, message="Year cannot be above 2024.")
 	private int year;
+	@Size(min=2, max=50, message="Please input a good ISBN.")
 	private String isbn;
+	@NotNull(message = "Please input a logical value - value has to be greater than {value}.")
+	@DecimalMin(value="3", message="Please input a logical value. Must be greater than {value}.")
 	private double price;
+	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "categoryId")
 	private Category category;
 	
