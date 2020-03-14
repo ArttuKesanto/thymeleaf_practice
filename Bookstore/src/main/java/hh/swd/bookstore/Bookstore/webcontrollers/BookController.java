@@ -141,7 +141,7 @@ public String getAllCategories(Model model) {
 		model.addAttribute("category", catRepository.findById(catId));
 		model.addAttribute("catslist", catRepository.findAll());
 		//model.addAttribute("cats", catRepository.findAll());
-		return "editcategory"; // Liittyy polkuun, jolla palautetaan suoraan editbook. Ei redirect, vaan suora palautus. Redirect ei toimi.
+		return "editcategory"; // Liittyy polkuun, jolla palautetaan suoraan editcategory ID:llä. Ei redirect, vaan suora palautus. Redirect ei toimi.
 }
 	
 	
@@ -150,7 +150,7 @@ public String getAllCategories(Model model) {
 	
 	
 	
-	
+	//REST-availability and ENDPOINTS included in this work, REST API also available.
 	
 	//RESTful service to get all books.
 	@RequestMapping(value="/books", method = RequestMethod.GET)
@@ -166,7 +166,8 @@ public String getAllCategories(Model model) {
 }
 	
 	   // RESTful service to save new car 
-    @RequestMapping(value="/books", method = RequestMethod.POST) // POST kertoo, että tallennetaan tietoa.
+    @RequestMapping(value="/books", method = RequestMethod.POST) // POST kertoo, että tallennetaan tietoa. Voisi tehdä vielä jotain websecurityllä??
+    // Toisaalta haluamme näyttää kirjat kaikkineen kuitenkin JSON-muodossa GET-metodilla.
     public @ResponseBody Book saveBookRest(@RequestBody Book book) {	
     	return bookRepository.save(book);
     }

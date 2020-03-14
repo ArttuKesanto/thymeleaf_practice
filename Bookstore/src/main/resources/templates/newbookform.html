@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1 id="titlemain">Add a new book with the information required</h1>
-	<form id="form" action="#" th:action="@{/save}"  th:object= ${book} method="post">
+	<form id="form" action="#" th:action="@{/save}" th:object="${book}" method="post">
 	<p>Title Book: <input type="text" th:field="${book.title}" /></p>
 	<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</p>
 	<p>Author: <input type="text" th:field="${book.author}" /></p>

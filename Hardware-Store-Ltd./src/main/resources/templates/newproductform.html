@@ -8,13 +8,19 @@
 </head>
 <body>
 	<h1 id="titlemain">Add a new product with the information required</h1>
-	<form id="form" action="#" th:action="@{/save}"  th:object= ${product} method="post">
-	<p>Product name: <input type="text" th:field="${product.name}" /></p>
-	<p>Year: <input type="text" th:field="${product.year}" /></p>
-	<p>Rating: <input type="text" th:field="${product.rating}" /></p>
-	<p>Availability: <input type="text" th:field="${product.availability}" /></p>
-	<p>Description: <input type="text" th:field="${product.description}" /></p>
-	<p>Price: <input type="text" th:field="${product.price}" /></p>
+	<form id="form" action="#" th:action="@{/save}" th:object="${electronicProduct}" method="post">
+	<p>Product name: <input type="text" th:field="*{name}" /></p>
+	<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
+	<p>Year: <input type="text" th:field="*{year}" /></p>
+	<p th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year Error</p>
+	<p>Rating: <input type="text" th:field="*{rating}" /></p>
+	<p th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}">Rating Error</p>
+	<p>Availability: <input type="text" th:field="*{availability}" /></p>
+	<p th:if="${#fields.hasErrors('availability')}" th:errors="*{availability}">Availability Error</p>
+	<p>Description: <input type="text" th:field="*{description}" /></p>
+	<p th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</p>
+	<p>Price: <input type="text" th:field="*{price}" /></p>
+	<p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</p>
 	<input type="submit" id="button" value="Submit" /> <input type="reset" id="button" value="Reset" />
 	<label for="categorylist">Category:</label>
 			<select id="categorylist" th:field="*{category}" class="form-control">

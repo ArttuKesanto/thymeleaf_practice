@@ -8,9 +8,9 @@
 </head>
 <body>
 	<h1 id="titlemain">Add a new category (product type) with the information required</h1>
-	<form id="form" action="#" th:action="@{/savecat}"  th:object= ${cat} method="post">
-	<p>Category title: <input type="text" th:field="${cat.name}" /></p>
-	
+	<form id="form" action="#" th:action="@{/savecat}"  th:object="${eProductCategory}" method="post">
+	<p>Category title: <input type="text" th:field="*{name}" /></p>
+	<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p> 
 	<input type="submit" id="button" value="Submit" /> <input type="reset" id="button" value="Reset" />
 	<!-- <label for="categorylist">Category:</label>
 			<select id="categorylist" th:field="*{category}" class="form-control">

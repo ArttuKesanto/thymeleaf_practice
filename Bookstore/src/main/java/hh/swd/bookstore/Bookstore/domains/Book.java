@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -34,12 +35,12 @@ public class Book {
 	private int year;
 	@Size(min=2, max=50, message="Please input a good ISBN.")
 	private String isbn;
-	@NotNull(message = "Please input a logical value - value has to be greater than {value}.")
+	@NotNull(message = "Please input a logical value - value has to be greater than 3.00.")
 	@DecimalMin(value="3", message="Please input a logical value. Must be greater than {value}.")
 	private double price;
 	
 	@ManyToOne
-	@JsonIgnore
+	@JsonManagedReference // Saadaan näin kunnossa myös REST-rajapinta.
 	@JoinColumn(name = "categoryId")
 	private Category category;
 	

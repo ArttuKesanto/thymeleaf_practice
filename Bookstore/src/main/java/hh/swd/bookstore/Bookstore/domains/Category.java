@@ -12,7 +12,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Category {
@@ -24,6 +26,7 @@ public class Category {
 	private String name;
 	
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "category")
+	@JsonBackReference
 	private List<Book> books;
 	
 	public Category() {

@@ -1,7 +1,7 @@
 package fi.haagahelia.course;
 
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.List;
 
 import org.springframework.context.annotation.Bean;
@@ -24,11 +24,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .authorizeRequests().antMatchers("/css/**").permitAll() // Enable css when logged out
         .and()
         .authorizeRequests()
-        .antMatchers("/", "add", "save", "studentlist", "delete/{id}").permitAll()
-          .anyRequest().authenticated()
+        .antMatchers("/", "/add", "/save", "/studentlist").permitAll()
+        .antMatchers("/delete/{id}").hasRole("ADMIN")
+          .anyRequest().authenticated() // ELI muut other reequests kaikille.... Sisäänkirjautuneella käyttäjällä on aina joku rooli.
           .and()
       .formLogin()
-          .loginPage("/login")
+          //.loginPage("/login") EI CONTROLLER-ENDPOINTTIA; EI omaa login-templatea.
           .defaultSuccessUrl("/studentlist")
           .permitAll()
           .and()

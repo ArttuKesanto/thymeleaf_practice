@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <title>Category List</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -15,11 +15,11 @@
 		<tr th:each="category : ${catslist}">
 			<td th:text="${category.name}">category</td>
 
-			<td><a th:href="@{/deletecat/{id}(id=${category.categoryId})}">Delete</a></td>
-			<td><a th:href="@{/editcat/{id}(id=${category.categoryId})}">Edit</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deletecat/{id}(id=${category.categoryId})}">Delete</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editcat/{id}(id=${category.categoryId})}">Edit</a></td>
 		</tr>
 	</table>
-	<a href="/newcat" id="button">Add a new category</a>
+	<span sec:authorize="hasAuthority('ADMIN')"><a href="/newcat" id="button">Add a new category</a></span>
 	
 	<a th:href="@{/allproducts}" id="buttonprevious">Back to product listing</a>
 

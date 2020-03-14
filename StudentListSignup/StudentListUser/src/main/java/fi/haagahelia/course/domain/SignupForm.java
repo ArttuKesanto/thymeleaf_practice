@@ -1,6 +1,6 @@
 package fi.haagahelia.course.domain;
 
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Size; 
 
 import org.hibernate.validator.constraints.NotEmpty;
 

@@ -1,5 +1,4 @@
 #titlemain {
-	padding-left: 50px;
 	font-size: 80px;
 	font-family: 'Tangerine', cursive;
 	margin: auto;
@@ -66,4 +65,37 @@
 	background-color: #8f6f2d;
 	border: 1px solid #fff;
 	border-radius: 10px;
+}
+
+#signout {
+	font-family: Gill Sans, sans-serif;
+	font-size: 15px;
+	color: #fff;
+	padding: 8px;
+	background-color: #d33014;
+	border: 1px solid #fff;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+#welcometext {
+	color: black;
+	background-color: #cae5e6;
+	border: 3px solid #dd5223;
+  	padding: 12px;
+  	border-radius: 10px;
+  	width: 30%;
+  	text-align: left;
+  	margin-right: auto;
+}
+
+#button2 {
+	font-family: Gill Sans, sans-serif;
+	font-size: 15px;
+	color: #fff;
+	padding: 8px;
+	background-color: #2d173b;
+	border: 1px solid #fff;
+	border-radius: 10px;
+	cursor: pointer;
 }

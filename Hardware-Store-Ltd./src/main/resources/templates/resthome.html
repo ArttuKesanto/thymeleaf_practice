@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.com">
+<head>
+<meta charset="utf-8" />
+<title>REST Home Page</title>
+</head>
+<body>
+<h1>REST Home Page</h1>
+
+	<h2>All Products</h2>
+	<p>
+		<strong>Method:</strong> GET <strong>Endpoint:</strong> <strong><a
+			href="/eproducts">/eproducts</a></strong>
+	</p>
+	<p>
+		<strong>JSON Example:</strong>
+	</p>
+	<pre><code>[
+{
+id: 9,
+name: "Logitech Xy 144Hz",
+year: 2016,
+rating: "4/5",
+availability: "Available",
+description: "Such a good display with an amazing quality.",
+price: 145.5
+},
+{
+id: 10,
+name: "Microsoft KB 7000",
+year: 2020,
+rating: "5/5",
+availability: "Not available",
+description: "What a fine and comfortable experience with this keyboard.",
+price: 69.5
+},
+{
+id: 11,
+name: "Samsung Extra Hold",
+year: 2018,
+rating: "4/5",
+availability: "Available",
+description: "You get such good friction with this amazing hold.",
+price: 100.6
+}
+]</code></pre>
+
+	<h2>Product By Id</h2>
+	<p>
+		<strong>GET </strong><strong> /eproducts/{id} </strong> <strong>
+		<a href="/eproducts/10">/eproducts/10</a></strong>
+	</p>
+	<p>
+		<strong>JSON Example:</strong>
+	</p>
+	<pre><code>{
+id: 10,
+name: "Microsoft KB 7000",
+year: 2020,
+rating: "5/5",
+availability: "Not available",
+description: "What a fine and comfortable experience with this keyboard.",
+price: 69.5
+}</code></pre>
+	<h2>New Product</h2>
+	<p>
+		<strong>POST </strong> <strong> /eproducts (WITH POST)</strong> (Test
+		with <a href="https://www.getpostman.com/" target="_blank">PostMan</a>/etc.)
+	</p>
+	<p>
+		<strong>JSON Example:</strong>
+	</p>
+	<pre><code>{
+"id": 11,   // NOT NEEDED - autoincrement is on, has no effect. Just an example.
+"name": "Samsung Extra Hold",
+"year": 2018,
+"rating": "4/5",
+"availability": "Available",
+"description": "You get such good friction with this amazing hold.",
+"price": 100.6
+}</code></pre>
+</body>
+</html>

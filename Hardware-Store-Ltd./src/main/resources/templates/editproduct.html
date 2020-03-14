@@ -11,30 +11,36 @@
 
 	<h2 id="titlemain">Modify the desired product's information</h2>
 	<div>
-		<form id="form" th:object="${product}" th:action="@{../save}" action="#" method="post">
+		<form id="form" th:object="${electronicProduct}" th:action="@{../saveedit}" action="#" method="post">
 		  	
 		  	<label for="name">Product's name:</label>
-			<input type="text" id="name" th:field="*{name}" /> 
+			<input type="text" id="name" th:field="*{name}" />
+			<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>  
 			<div style="clear: both; display: block; height: 20px;"></div>
 			
 		  	<label for="author">Product's release year:</label>
 			<input type="text" id="year" th:field="*{year}" />
+			<p th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year Error</p> 
 			<div style="clear: both; display: block; height: 20px;"></div>
 			
 		  	<label for="isbn">Rating of the product:</label>
 			<input type="text" th:field="*{rating}" />
+			<p th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}">Rating Error</p> 
 			<div style="clear: both; display: block; height: 20px;"></div>
 			
 			<label for="year">Availability of the product:</label>
 			<input type="text" th:field="*{availability}" />
+			<p th:if="${#fields.hasErrors('availability')}" th:errors="*{availability}">Availability Error</p> 
 			<div style="clear: both; display: block; height: 20px;"></div>	
 			
 			<label for="year">Description of the product:</label>
 			<input type="text" th:field="*{description}" />
+			<p th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</p> 
 			<div style="clear: both; display: block; height: 20px;"></div>	
 			
 			<label for="year">Price of the product:</label>
 			<input type="text" th:field="*{price}" />
+			<p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</p> 
 			<div style="clear: both; display: block; height: 20px;"></div>	
 			
 			<label for="id"></label>

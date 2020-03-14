@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -16,6 +18,8 @@ public class EProductCategory {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long categoryId;
+	@NotNull(message="Please input a logical category name. Size between 3 and 25 characters.")
+	@Size(min=3, max=25, message="Please input a logical category name. Size between 3 and 25 characters.")
 	private String name;
 	
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "category")
@@ -23,6 +27,7 @@ public class EProductCategory {
 	
 	public EProductCategory () {
 		super();
+		this.name = "Type a category name!";
 	}
 	
 	public EProductCategory(String name) {

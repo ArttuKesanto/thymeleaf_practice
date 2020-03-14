@@ -11,10 +11,11 @@
 
 	<h2 id="titlemain">Modify the desired category's information</h2>
 	<div>
-		<form id="form" th:object="${cat}" th:action="@{../savecat}" action="#" method="post">
+		<form id="form" th:object="${eProductCategory}" th:action="@{../saveeditcat}" action="#" method="post">
 		  	
 		  	<label for="name">Category's name:</label>
-			<input type="text" id="name" th:field="*{name}" /> 
+			<input type="text" id="name" th:field="*{name}" />
+			<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p> 
 			<div style="clear: both; display: block; height: 20px;"></div>
 			
 			
@@ -31,7 +32,7 @@
 					th:text="${category.name}"></option>
 			</select> -->
 			
-			<p><a th:href="@{/categorieslist}" id="buttonprevious">Back to category list</a></p>
+			<p><a th:href="@{/allcats}" id="buttonprevious">Back to category list</a></p>
 			
 		</form>
 	</div>

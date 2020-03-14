@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <title>Book List</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -8,6 +8,16 @@
 </head>
 <body>
 	<h1 id="titlemain">Books by Arttu Books Ltd.</h1>
+	<div class="col-md-4">
+		<h3 th:inline="text" id="welcometext">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+	</div>
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<span sec:authorize="hasAnyAuthority('ADMIN', 'USER')"><input type="submit" value="Sign Out" class="btn btn-danger" id="signout"/></span>
+			<a href="/signup" id="button2">Sign up as a new user</a>
+			<a href="/login" id="button2">Sign in again</a>
+		</form>
+	</div>
 	<table id="table">
 		<tr>
 			<th>Title</th>
@@ -29,13 +39,13 @@
 			//<span th:if="${book.category.name == True}">Category related to book </span>
 			//<span th:unless="${book.category.name == null}">Category related to book </span>
 			//</td> MAYBE THIS?-->
-			<td><a th:href="@{/deletebook/{id}(id=${book.id})}">Delete</a></td>
-			<td><a th:href="@{/editbook/{id}(id=${book.id})}">Edit</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deletebook/{id}(id=${book.id})}">Delete</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editbook/{id}(id=${book.id})}">Edit</a></td>
 			
 		</tr>
 	</table>
-	<a href="/newbook" id="button">Add a new book</a>
-	<a href="/allcats" id="button">Show and edit categories</a>
+	<span sec:authorize="hasAuthority('ADMIN')"><a href="/newbook" id="button">Add a new book</a> </span>
+	<a href="/allcats" id="button">Show and edit categories (EDIT reserved for Admins)</a>
 	<a href="http://localhost:8080/api/books" id="button">Show JSON data</a>
 
 </body>

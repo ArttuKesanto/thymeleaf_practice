@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <title>Product List</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -8,6 +8,16 @@
 </head>
 <body>
 	<h1 id="titlemain">Electronic Products by Hardware Limited Ltd.</h1>
+		<div class="col-md-4">
+		<h3 th:inline="text" id="welcometext">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+	</div>
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<span sec:authorize="hasAnyAuthority('ADMIN', 'USER')"><input type="submit" value="Sign Out" class="btn btn-danger" id="signout"/></span>
+			<a href="/signup" id="button2">Sign up as a new user</a>
+			<a href="/login" id="button2">Sign in again</a>
+		</form>
+	</div>
 	<table id="table">
 		<tr>
 			<th>Name</th>
@@ -28,12 +38,13 @@
 			<td th:text="${product.price}">price</td>
 			
 			<td th:text="${product.category.name}">Category related to product</td>
-			<td><a th:href="@{/deleteproduct/{id}(id=${product.id})}">Delete</a></td>
-			<td><a th:href="@{/editproduct/{id}(id=${product.id})}">Edit</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deleteproduct/{id}(id=${product.id})}">Delete</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editproduct/{id}(id=${product.id})}">Edit</a></td>
 		</tr>
 	</table>
-	<a href="/newproduct" id="button">Add a new product</a>
-	<a href="/allcats" id="button">Show and edit categories</a>
+	<span sec:authorize="hasAuthority('ADMIN')"><a href="/newproduct" id="button">Add a new product</a></span>
+	<a href="/allcats" id="button">Show and edit categories (Edit for Admins only)</a>
+	<a href="http://localhost:8080/api/electronicProducts" id="button">Show JSON data</a>
 	
 
 </body>

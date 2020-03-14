@@ -9,7 +9,7 @@
 <body>
 	<h1 id="titlemain">Add a new category with the information required</h1>
 	<div>
-	<form id="form" action="#" th:action="@{/savecat}" th:object= ${category} method="post">
+	<form id="form" action="#" th:action="@{/savecat}" th:object="${category}" method="post">
 			 <label for="name">Category's title:</label>
 			<input type="text" id="name" th:field="${category.name}" />
 			<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Title Error</p> 
