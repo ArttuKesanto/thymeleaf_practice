@@ -36,11 +36,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter { // Periyty
         .and()
         .authorizeRequests().antMatchers("/deleteproduct/{id}", "/deletecat/{categoryId}", "/editproduct/{id}", "/editcat/{categoryId}", "/newproduct", "/newcat", "/save", "/saveedit", "/savecat", "/saveeditcat").hasAuthority("ADMIN")
         .and()
-        .authorizeRequests().anyRequest().authenticated()
-        .and()
         .authorizeRequests().antMatchers("/h2-console/**").permitAll()
         .and().csrf().ignoringAntMatchers("/h2-console/**")
         .and().headers().frameOptions().sameOrigin()
+        .and()
+        .authorizeRequests().anyRequest().authenticated()
         .and()
       .formLogin()
           //.loginPage("/login") Not needed - using the module's own template, just in case.
