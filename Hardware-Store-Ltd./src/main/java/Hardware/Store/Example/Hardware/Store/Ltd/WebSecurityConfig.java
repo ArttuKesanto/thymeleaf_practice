@@ -38,6 +38,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter { // Periyty
         .and()
         .authorizeRequests().anyRequest().authenticated()
         .and()
+        .authorizeRequests().antMatchers("/h2-console/**").permitAll()
+        .and().csrf().ignoringAntMatchers("/h2-console/**")
+        .and().headers().frameOptions().sameOrigin()
+        .and()
       .formLogin()
           //.loginPage("/login") Not needed - using the module's own template, just in case.
           .defaultSuccessUrl("/allproducts")
