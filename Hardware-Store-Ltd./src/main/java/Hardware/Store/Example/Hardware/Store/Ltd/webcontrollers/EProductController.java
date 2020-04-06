@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -154,19 +155,22 @@ private EProductCategoryRepository catRepository;
 	//REST-availability and ENDPOINTS included in this work, REST API also available.
 	
 	//RESTful service to get all products.
+	@CrossOrigin // Can use parameters here as well, like origins, methods, allowHeaders, exposeHeaders, allowCredentials, maxAge...
 	@RequestMapping(value="/eproducts", method = RequestMethod.GET)
 	public @ResponseBody List<ElectronicProduct> productListRest() {
 		return (List<ElectronicProduct>) productRepository.findAll();
 	}
 	
 	//RESTful service to get one product by id.
+	@CrossOrigin
 	@RequestMapping(value = "/eproducts/{id}", method = RequestMethod.GET)
 	public @ResponseBody Optional <ElectronicProduct> findProductRest(@PathVariable Long id) { // Täytyy olla id, ei toimi categoryId tässä!
 		return productRepository.findById(id); // Laitetaan util-importti optional, jotta voidaan käyttää PathVariablea myös tässä.
 	
 }
 	
-	   // RESTful service to save a new EProduct 
+	   // RESTful service to save a new EProduct
+	@CrossOrigin
     @RequestMapping(value="/eproducts", method = RequestMethod.POST) // POST kertoo, että tallennetaan tietoa.
     public @ResponseBody ElectronicProduct saveProductRest(@RequestBody ElectronicProduct eproduct) {	
     	return productRepository.save(eproduct);

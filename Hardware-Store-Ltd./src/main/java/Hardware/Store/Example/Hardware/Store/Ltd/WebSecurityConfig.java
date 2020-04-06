@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter { // Periyty
         http
         .authorizeRequests().antMatchers("/css/**").permitAll() // Enable css when logged out. Decide yourself.
         .and()
-        .authorizeRequests().antMatchers("/signup", "/saveuser", "/allproducts", "/allcats").permitAll() //saveuser tallentaa userin, ei ADMINia.
+        .authorizeRequests().antMatchers("/signup", "/saveuser", "/allproducts", "/allcats", "/eproducts", "/eproducts/{id}").permitAll() //saveuser tallentaa userin, ei ADMINia. Permitoidaan omaa Front-End -ratkaisua varten demomerkeissä myös JSON-own-list, ei toteutukseen!
         .and()
         .authorizeRequests().antMatchers("/deleteproduct/{id}", "/deletecat/{categoryId}", "/editproduct/{id}", "/editcat/{categoryId}", "/newproduct", "/newcat", "/save", "/saveedit", "/savecat", "/saveeditcat").hasAuthority("ADMIN")
         .and()

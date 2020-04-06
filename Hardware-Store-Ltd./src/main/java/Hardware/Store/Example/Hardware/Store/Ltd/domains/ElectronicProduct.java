@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -41,7 +42,8 @@ public class ElectronicProduct {
 	@DecimalMin(value="4", message="Please input a logical value. Must be greater than {value}.")
 	private double price;
 	@ManyToOne
-	@JsonIgnore // Very important to get rid of endless looping!
+	//@JsonIgnore // Very important to get rid of endless looping!
+	@JsonManagedReference
 	@JoinColumn(name = "categoryId")
 	private EProductCategory category;
 	

@@ -1,6 +1,6 @@
 package Hardware.Store.Example.Hardware.Store.Ltd;
 
-import static org.assertj.core.api.Assertions.assertThat; 
+import static org.assertj.core.api.Assertions.assertThat;  
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

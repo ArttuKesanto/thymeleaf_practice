@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 @Entity
 public class EProductCategory {
@@ -23,6 +25,7 @@ public class EProductCategory {
 	private String name;
 	
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "category")
+	@JsonBackReference
 	private List<ElectronicProduct> electronicProducts;
 	
 	public EProductCategory () {
